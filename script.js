@@ -21,9 +21,18 @@ module.exports = new Script({
             const name = message.text;
             return bot.setProp('name', name)
                 .then(() => bot.say(`Great! I'll call you ${name}`))
-                .then(() => 'finish');
+		.then(() => 'askArithmetic');
         }
     },
+
+    askArithmetic: {
+        prompt: (bot) => bot.say('How much is the 2 + 2?'),
+	receive: (bot, message) => {
+		const answer = message.text;
+		return bot.say(answer == 4 ? 'Correct' : 'Wrong')
+			.then(() => answer == 4 ? 'finish' : 'askArithmetic');
+	}
+    }
 
     finish: {
         receive: (bot, message) => {
