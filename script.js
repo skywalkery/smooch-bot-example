@@ -32,7 +32,7 @@ module.exports = new Script({
 		return bot.say(answer == 4 ? 'Correct' : 'Wrong')
 			.then(() => answer == 4 ? 'finish' : 'askArithmetic');
 	}
-    }
+    },
 
     finish: {
         receive: (bot, message) => {
